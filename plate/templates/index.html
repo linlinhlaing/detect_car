@@ -1,0 +1,68 @@
+<html>
+<head>
+    <style>
+
+        .button {
+            color: black;
+            width: 100px;
+            height: 60px;
+            background-color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 80px;
+            left: 50px;
+            font-size: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            border-style: inset;
+            border: 2px solid black;
+        }
+
+        .button:hover {
+            background-color: #e7e7e7;
+        }       
+
+
+
+
+
+        img {
+            padding: 0;
+            margin: auto;
+            display: block;
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 1px solid black;
+        }
+
+  
+    </style>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="button" type="submit" onclick="Upload()">Upload a photo</button>
+        {% if img_obj %}
+        <p><img src="{{img_obj.upload_Img.url}}" alt="upload" style="width: 500px; height: 350px;"></p>
+
+        {% endif %}
+
+        {% with name=upload %}
+        {% if img_obj.upload_Img.url %}
+        <p id="result" style="text-align: right; padding-right: 250px; padding-top:120px">{{plate}}</p>
+        {% endif %}
+        {% endwith %}
+    </form>
+    </body>
+
+    </html>
